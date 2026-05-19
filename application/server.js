@@ -90,7 +90,7 @@ app.get('/login', (req, res) => {
 });
 
 // Handle login POST request (JSON)
-app.post('/login', isNotAuthenticated, async (req, res) => {
+app.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
 
