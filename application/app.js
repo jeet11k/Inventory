@@ -84,7 +84,7 @@ function displayInventory(items) {
 
 // Load and display summary
 function loadSummary() {
-  fetch(`${API_BASE}/summary`)
+  fetch('https://inventory-1-k5dw.onrender.com/api/summary')
     .then(res => res.json())
     .then(summary => {
       displaySummary(summary);

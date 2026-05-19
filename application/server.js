@@ -143,9 +143,6 @@ app.get('/dashboard', isAuthenticated, (req, res) => {
 
 // Redirect root to login or dashboard
 app.get('/', (req, res) => {
-  if (req.session && req.session.userId) {
-    return res.redirect('/dashboard');
-  }
   res.redirect('/login');
 });
 
