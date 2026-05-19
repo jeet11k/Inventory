@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Inventory Management</p>
+        <h1>Hardware Inventory</h1>
+        <p class="subtitle">Track laptops, desktops, and phones in a simple greyscale interface.</p>
+      </div>
+      <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#inventory">Inventory</a>
+        <a href="#add-item">Add Item</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="dashboard" class="panel summary-panel">
+        <div class="summary-card">
+          <span class="card-title">Total Items</span>
+          <strong>0</strong>
+        </div>
+        <div class="summary-card">
+          <span class="card-title">Laptops</span>
+          <strong>0</strong>
+        </div>
+        <div class="summary-card">
+          <span class="card-title">Desktops</span>
+          <strong>0</strong>
+        </div>
+        <div class="summary-card">
+          <span class="card-title">Phones</span>
+          <strong>0</strong>
+        </div>
+      </section>
+
+      <section id="inventory" class="panel inventory-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Inventory List</h2>
+            <p>View and manage your hardware assets with simple filters.</p>
+          </div>
+          <div class="filter-row">
+            <select>
+              <option value="all">All Categories</option>
+              <option value="laptop">Laptop</option>
+              <option value="desktop">Desktop</option>
+              <option value="phone">Phone</option>
+            </select>
+            <input type="search" placeholder="Search items..." />
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="6" style="text-align: center; color: #999;">Loading inventory...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="add-item" class="panel form-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Add / Edit Item</h2>
+            <p>Use this simple form layout to capture inventory details.</p>
+          </div>
+        </div>
+
+        <form class="item-form">
+          <div class="form-grid">
+            <label>
+              Item Name
+              <input type="text" placeholder="Enter item name" required />
+            </label>
+            <label>
+              Category
+              <select required>
+                <option value="">Select Category</option>
+                <option>Laptop</option>
+                <option>Desktop</option>
+                <option>Phone</option>
+              </select>
+            </label>
+            <label>
+              Quantity
+              <input type="number" min="1" value="1" required />
+            </label>
+            <label>
+              Location
+              <input type="text" placeholder="Warehouse A" required />
+            </label>
+            <label>
+              Status
+              <select required>
+                <option value="">Select Status</option>
+                <option>Available</option>
+                <option>Assigned</option>
+                <option>In Repair</option>
+              </select>
+            </label>
+            <label class="full-width">
+              Notes
+              <textarea placeholder="Optional notes"></textarea>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary">Save Item</button>
+            <button type="button" class="secondary" onclick="resetForm(); return false;">Cancel</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
