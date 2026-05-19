@@ -204,7 +204,7 @@ app.get('/api/inventory/:id', isAuthenticated, (req, res) => {
 });
 
 // Create new item (protected)
-app.post('/api/inventory', isAuthenticated, (req, res) => {
+app.post('/api/inventory',(req, res) => {
   const { name, category, quantity, location, status, notes } = req.body;
 
   if (!name || !category || !quantity || !location || !status) {
