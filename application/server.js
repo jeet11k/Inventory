@@ -149,7 +149,7 @@ app.get('/', (req, res) => {
 // ==================== Protected Inventory Routes ====================
 
 // Get all inventory items (protected)
-app.get('/api/inventory', isAuthenticated, (req, res) => {
+app.get('/api/inventory',(req, res) => {
   db.all('SELECT * FROM inventory ORDER BY created_at DESC', (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
