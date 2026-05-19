@@ -85,7 +85,7 @@ function seedInitialData() {
 // ==================== Authentication Routes ====================
 
 // Serve login page
-app.get('/login', isNotAuthenticated, (req, res) => {
+app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'login.html'));
 });
 
