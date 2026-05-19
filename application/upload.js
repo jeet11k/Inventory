@@ -5,7 +5,7 @@ async function uploadData() {
     const laptop = {
       name: `Laptop-${i}`,
       category: 'Laptop',
-      quantity: 5,
+      quantity: 20,
       location: 'Warehouse',
       status: 'Available',
       notes: 'Dummy data'
