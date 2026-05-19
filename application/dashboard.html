@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Inventory Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .navbar-custom {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-custom .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+      color: white !important;
+    }
+    
+    .navbar-custom .nav-link {
+      color: rgba(255,255,255,0.85) !important;
+      font-weight: 500;
+      margin-left: 20px;
+      transition: color 0.3s ease;
+    }
+    
+    .navbar-custom .nav-link:hover {
+      color: white !important;
+    }
+    
+    .btn-logout {
+      background-color: #ff6b6b;
+      border: none;
+      color: white;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-logout:hover {
+      background-color: #ff5252;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+    }
+    
+    .user-info {
+      color: white;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: 15px;
+    }
+    
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#dashboard">📦 Inventory Manager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#inventory">Inventory</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#add-item">Add Item</a>
+          </li>
+          <li class="nav-item">
+            <div class="user-info">
+              <div class="user-avatar" id="userAvatar">A</div>
+              <span id="username">Admin</span>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="btn-logout" onclick="logout()">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="app-shell">
+    <header class="app-header" style="background: white; border-bottom: 1px solid #eee;">
+      <div>
+        <p class="eyebrow">Inventory Management</p>
+        <h1>Hardware Inventory</h1>
+        <p class="subtitle">Track laptops, desktops, and phones in a simple greyscale interface.</p>
+      </div>
+    </header>
+
+    <main>
+      <section id="dashboard" class="panel summary-panel">
+        <div class="summary-card">
+          <span class="card-title">Total Items</span>
+          <strong>0</strong>
+        </div>
+        <div class="summary-card">
+          <span class="card-title">Laptops</span>
+          <strong>0</strong>
+        </div>
+        <div class="summary-card">
+          <span class="card-title">Desktops</span>
+          <strong>0</strong>
+        </div>
+        <div class="summary-card">
+          <span class="card-title">Phones</span>
+          <strong>0</strong>
+        </div>
+      </section>
+
+      <section id="inventory" class="panel inventory-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Inventory List</h2>
+            <p>View and manage your hardware assets with simple filters.</p>
+          </div>
+          <div class="filter-row">
+            <select>
+              <option value="all">All Categories</option>
+              <option value="laptop">Laptop</option>
+              <option value="desktop">Desktop</option>
+              <option value="phone">Phone</option>
+            </select>
+            <input type="search" placeholder="Search items..." />
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="6" style="text-align: center; color: #999;">Loading inventory...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="add-item" class="panel form-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Add / Edit Item</h2>
+            <p>Use this simple form layout to capture inventory details.</p>
+          </div>
+        </div>
+
+        <form class="item-form">
+          <div class="form-grid">
+            <label>
+              Item Name
+              <input type="text" placeholder="Enter item name" required />
+            </label>
+            <label>
+              Category
+              <select required>
+                <option value="">Select Category</option>
+                <option>Laptop</option>
+                <option>Desktop</option>
+                <option>Phone</option>
+              </select>
+            </label>
+            <label>
+              Quantity
+              <input type="number" min="1" value="1" required />
+            </label>
+            <label>
+              Location
+              <input type="text" placeholder="Warehouse A" required />
+            </label>
+            <label>
+              Status
+              <select required>
+                <option value="">Select Status</option>
+                <option>Available</option>
+                <option>Assigned</option>
+                <option>In Repair</option>
+              </select>
+            </label>
+            <label class="full-width">
+              Notes
+              <textarea placeholder="Optional notes"></textarea>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary">Save Item</button>
+            <button type="button" class="secondary" onclick="resetForm(); return false;">Cancel</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Set username in avatar and text
+    async function setUserInfo() {
+      try {
+        const response = await fetch('/api/user');
+        if (response.ok) {
+          const data = await response.json();
+          const username = data.username;
+          document.getElementById('username').textContent = username;
+          document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
+        }
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    }
+
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        fetch('/logout', { method: 'POST' })
+          .then(() => {
+            window.location.href = '/login';
+          })
+          .catch(error => {
+            console.error('Logout error:', error);
+            window.location.href = '/login';
+          });
+      }
+    }
+
+    setUserInfo();
+  </script>
+</body>
+</html>
